@@ -1,22 +1,14 @@
 import boto3
-from pprint import pprint
 from typing import Annotated
 from fastapi import FastAPI, File, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
 app = FastAPI()
-
-allowed_origins = ['http://127.0.0.1:5500']
-
-app.add_middleware(
-  CORSMiddleware,
-  allow_origins=allowed_origins,
-  allow_credentials=True,
-  allow_methods=['*'],
-  allow_headers=['*']
-)
-
 rekognition_client = boto3.client('rekognition')
+
+@app.get("/")
+async def read_index():
+  return FileResponse("static/index.html")
 
 @app.post('/upload-image')
 def upload_image(

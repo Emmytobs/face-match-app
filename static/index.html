@@ -150,7 +150,7 @@
         // Since the backend API expects a BLOB, here's a convenient way to convert data URL to BLOB
         fd.append('uploaded_headshot', await (await fetch(capturedHeadshotImgEl.src)).blob());
 
-        const response = await fetch("http://127.0.0.1:8000/upload-image", {
+        const response = await fetch("/upload-image", {
           method: 'POST',
           body: fd,
         });
