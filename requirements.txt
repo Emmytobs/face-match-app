@@ -1,2 +1,7 @@
 boto3>=1.35.49
-fastapi[standard]
+# Needed to use an older version of FastAPI to work with the current version of AWS Lambda. 
+# See this link: https://stackoverflow.com/questions/77675082/having-diffuclties-deploying-my-fast-api-to-aws-lambda
+fastapi==0.99.0
+uvicorn==0.34.0
+mangum==0.19.0
+python-multipart==0.0.20
