@@ -1,0 +1,73 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  padding: 0 20px;
+}
+button {
+  cursor: pointer;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  max-width: 640px;
+}
+
+video,
+img {
+  height: auto;
+  width: 100%;
+}
+img.face-pic {
+  object-fit: contain;
+  object-position: center;
+}
+#result {
+  margin-top: 10px
+}
+
+.footer {
+  flex: 0 0 100px;
+  height: 100px;
+}
+@media screen and (max-width: 660px) {
+  .header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.steps-wrapper {
+  flex: 0 0 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.face-pic-wrapper,
+.headshot-wrapper {
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  row-gap: 10px;
+  margin-bottom: 20px;
+}
+.headshot-wrapper {
+  display: none;
+}
+.cta-buttons {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.cta-buttons #submit-button {
+  display: none;
+}
