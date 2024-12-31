@@ -36,6 +36,7 @@ async function switchCamera() {
 }
 
 async function captureHeadshot() {
+  resultEl.textContent = '';
   if (captureHeadshotBtn.textContent == 'Retake picture') {
     capturedHeadshotImgEl.src = ""
     captureHeadshotBtn.textContent = 'Take picture';
@@ -88,15 +89,15 @@ async function uploadImage(e) {
     return;
   }
   if (!capturedHeadshotImgEl.src) {
-    alert("Please take your picture")
+    alert("Please take your live headshot")
     return;
   }
   try {
     resultEl.textContent = 'Matching faces. Please wait...';
     const fd = new FormData();
-    fd.append('uploaded_photo_id', files[0]);
+    fd.append('uploaded_face_pic', files[0]);
     // Since the backend API expects a BLOB, here's a convenient way to convert data URL to BLOB
-    fd.append('uploaded_headshot', await (await fetch(capturedHeadshotImgEl.src)).blob());
+    fd.append('live_headshot', await (await fetch(capturedHeadshotImgEl.src)).blob());
 
     const response = await fetch("/upload-image", {
       method: 'POST',
@@ -104,13 +105,13 @@ async function uploadImage(e) {
     });
     const data = await response.json()
     if (!response.ok) {
-      alert(data.detail)
+      resultEl.textContent = data.detail;
       return;
     }
     
     resultEl.textContent = `
       Result:
-      Your photo ID and headshot are similar by ${data['Similarity'].toFixed(2)}%
+      Your uploaded face pic and live headshot are similar by ${data['Similarity'].toFixed(2)}%
     `
   } catch (error) {
     console.log(error)
